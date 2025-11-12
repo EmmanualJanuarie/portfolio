@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ContextComponent from "../components/ContextComponent"
 import NavbarComponent from "../components/NAVIGATION/NavabarComponent";
-import MobileNavbar from "../components/NAVIGATION/MobileNavbar";
 import UnderConstruction from "../components/UnderContruction";
 /**
  * Fabricates the landing page and it's features 
