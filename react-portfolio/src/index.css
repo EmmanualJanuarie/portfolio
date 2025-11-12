@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MAIN STYLING */
+.border-gray-color{
+    border: #D3D3D3 solid 1px;
+}
+
+
+/* SHINY TAG STYLING */
+.shiny-tag{
+    position: relative;
+    background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.shiny-tag::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.2) 100%
+      );
+      transform: rotate(25deg);
+      animation: shine 3s infinite;
+}
+
+.shiny-tag-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-align: center;
+}
+
+@keyframes shine {
+      0% {
+        transform: rotate(25deg) translate(-100%, -100%);
+      }
+      100% {
+        transform: rotate(25deg) translate(100%, 100%);
+      }
+}
+
+/* 3D LETERS */
+.text-3d{
+    text-shadow: 0 10px 10px rgba(0, 0, 0, 0.7); /* shadow for depth */
+    letter-spacing: 2px;
+}
+
+.set-za-background{
+    background-image: url('./assets/Images/backgrounds/south_africa_grune_effect_background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+.set-fin-background{
+    background-image: url('./assets/Images/backgrounds/finland_grune_effect_background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+/* SOCAIL CONTAINER STYLING */
+.social{
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.social:hover{
+    background: rgba(173, 216, 230, 0.1); /* light blue glow */
+    box-shadow: 0 0 30px #2596be;
+    transform: translateY(-10px); /* lift up */
+}
+
+/* BUTTON STYLING */
+.button-1{
+    cursor: pointer;
+}
+.button-1:hover{
+    background-color: #1e1e1e;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.selected-navitem{
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+
+
+.priority{
+    z-index: 100px;
+}
+
+
+/* SWIPER PAGNATION STYLE */
+:root {
+  --swiper-pagination-bullet-size: 12px;
+  --swiper-pagination-bullet-width: 12px;
+  --swiper-pagination-bullet-height: 12px;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+}
+
+.swiper-pagination {
+  margin-top: 20px; /* gap from the slides */
+}
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: #ccc; /* style bullets */
+  border: black 1px solid;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #333;
+}
+
+/* SIPER NAVIGATION STYLE*/
+:root{
+    --swiper-navigation-color: #333;
+}
+
