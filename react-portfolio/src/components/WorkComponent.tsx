@@ -25,6 +25,7 @@ const workCards: Work[] = [
 ];
 
 export default function WorkComponent() {
+
   return (
     <section className="w-full flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-12 bg-gray-50">
       <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center">

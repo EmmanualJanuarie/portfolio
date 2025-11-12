@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RESOURCES } from "../utils/resources";
 
 interface Certification {
@@ -85,6 +85,13 @@ const certifications: Certification[] = [
 export default function CertificationComponent() {
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
+  const [loading, setLoading] = useState(true);
+      
+  useEffect(() => {
+      // Simulate data fetching
+      const timer = setTimeout(() => setLoading(false), 1500);
+      return () => clearTimeout(timer);
+  }, []);
   return (
     <>
       {/* Modal */}
