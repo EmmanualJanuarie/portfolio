@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { RESOURCES } from "../utils/resources";
+import CertificateCardSkeleton from "./Skeletons/CertificateCardSkeleton";
 
 interface Certification {
   title: string;
@@ -157,20 +158,22 @@ export default function CertificationComponent() {
               onClick={() => setSelectedCert(cert)}
               className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden border border-gray-200"
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={cert.imageSrc}
-                  alt={cert.title}
-                  className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></div>
-              </div>
-              <div className="p-4 sm:p-5 text-center">
-                <h4 className="font-semibold text-gray-800 text-lg mb-1">
-                  {cert.title}
-                </h4>
-                <p className="text-gray-500 text-sm">Click to enlarge & verify</p>
-              </div>
+              {loading? <CertificateCardSkeleton /> : <>
+                  <div className="relative overflow-hidden">
+                  <img
+                    src={cert.imageSrc}
+                    alt={cert.title}
+                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition"></div>
+                </div>
+                <div className="p-4 sm:p-5 text-center">
+                  <h4 className="font-semibold text-gray-800 text-lg mb-1">
+                    {cert.title}
+                  </h4>
+                  <p className="text-gray-500 text-sm">Click to enlarge & verify</p>
+                </div>
+              </>}
             </div>
           ))}
         </div>
