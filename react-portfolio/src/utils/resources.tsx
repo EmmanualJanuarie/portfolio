@@ -1,18 +1,18 @@
 export const RESOURCES = {
     profile: {
-        pic: "/src/assets/images/profile-pic.png"
+        pic: "profile-pic.png"
     },
 
     icon:{
-        location: "/src/assets/images/icons/location_icon.png",
-        linkedin: "/src/assets/images/icons/linkedin_icon.png",
-        instagram: "/src/assets/images/icons/instagram_icon.png",
-        github: "/src/assets/images/icons/github_icon.png",
-        gmail: "/src/assets/images/icons/google_icon.png"
+        location: "icons/location_icon.png",
+        linkedin: "icons/linkedin_icon.png",
+        instagram: "icons/instagram_icon.png",
+        github: "icons/github_icon.png",
+        gmail: "icons/google_icon.png"
     },
 
     work:{
-        pic: "/src/assets/images/work/KBS-Portal.png"
+        pic: "work/KBS-Portal.png"
     },
 
     certs: {
