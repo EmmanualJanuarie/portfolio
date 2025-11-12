@@ -1,8 +1,19 @@
+import { useEffect, useState } from "react";
 import { RESOURCES } from "../../utils/resources";
 import IconComponent from "../ICON/IconComponent";
 import ProfilePictureComponent from "../ProfilePicture/ProfilePictureComponent";
+import ProfilePictureSkeleton from "../Skeletons/ProfilePictureSkeleton";
 
 export default function HomeComponent() {
+
+  const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        // Simulate data fetching
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
   return (
     <section className="relative flex flex-col md:flex-row items-center justify-between px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 py-16 md:py-24 overflow-hidden">
       {/* Background Accent (subtle Apple feel) */}
@@ -71,10 +82,10 @@ export default function HomeComponent() {
       <div className="relative z-10 mt-12 md:mt-0 flex justify-center w-64 sm:w-72 md:w-80 lg:w-96">
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-tr from-gray-200 via-gray-100 to-transparent rounded-full blur-2xl opacity-40" />
-          <ProfilePictureComponent
+          {loading? <ProfilePictureSkeleton /> : <ProfilePictureComponent
             setSRC={RESOURCES.profile.pic}
             setClassName="relative w-full h-full rounded-full shadow-xl border border-gray-200 object-cover"
-          />
+          />}
         </div>
       </div>
     </section>
