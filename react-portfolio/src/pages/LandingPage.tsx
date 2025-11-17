@@ -13,7 +13,7 @@ export default function LandingPage(){
 
     return(
        <>
-            <div className="hidden">  {/* Remove when construction is done */}
+            <div className="">  {/* Remove when construction is done */}
                 <div className="relative min-h-screen flex flex-col justify-between">
                     {/* CONTENT SECTION */}
                     <div className="flex-grow flex items-center justify-center py-4">
@@ -30,7 +30,7 @@ export default function LandingPage(){
             </div>
 
             {/* UNDER CONSTRUCTION */}
-            <div className="">
+            <div className="hidden">
                 <UnderConstruction />
             </div>
 

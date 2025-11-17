@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { RESOURCES } from "../utils/resources";
+import KbsPortalModal from "./MODALS/KbsPortalModal";
+import ReactNativeModal from "./MODALS/ReactNativeModal";
+import DataVizModal from "./MODALS/DataVizModal";
 
 interface Work {
   heading: string;
@@ -22,70 +26,89 @@ const workCards: Work[] = [
     btnCaseStudy: { name: "Case Study" },
     btnView: { name: "View", linkTo: "" },
   },
+  {
+    heading: "React Native App",
+    src: RESOURCES.work.pic,
+    facts: [
+      { head: "Stack", content: "React Native / Firebase" },
+      { head: "Feature", content: "Mobile Functionality" },
+      { head: "Role", content: "Frontend Developer" },
+      { head: "Company", content: "Personal Project" },
+    ],
+    btnCaseStudy: { name: "Case Study" },
+    btnView: { name: "View", linkTo: "" },
+  },
+  {
+    heading: "Data Visualization",
+    src: RESOURCES.work.pic,
+    facts: [
+      { head: "Stack", content: "Tableau / Power BI" },
+      { head: "Feature", content: "Interactive Dashboards" },
+      { head: "Role", content: "Data Analyst / Developer" },
+      { head: "Company", content: "Personal Project" },
+    ],
+    btnCaseStudy: { name: "Case Study" },
+    btnView: { name: "View", linkTo: "" },
+  },
 ];
 
 export default function WorkComponent() {
 
+  const [openCaseStudy, setOpenCaseStudy] = useState<string | null>(null);
+  
   return (
     <section className="w-full flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-12 bg-gray-50">
-      <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center">
-        My Work
-      </h2>
 
       {/* Desktop Table */}
-      <div className="hidden lg:block w-full max-w-6xl overflow-x-auto bg-white rounded-3xl shadow-xl border border-gray-200">
-        <table className="min-w-full divide-y divide-gray-200 text-sm sm:text-base">
-          <thead className="bg-gray-100 text-gray-700">
-            <tr>
-              <th className="px-6 py-4 text-left font-semibold">Preview</th>
-              <th className="px-6 py-4 text-left font-semibold">Project</th>
-              <th className="px-6 py-4 text-left font-semibold">Stack</th>
-              <th className="px-6 py-4 text-left font-semibold">Feature</th>
-              <th className="px-6 py-4 text-left font-semibold">Company</th>
-              <th className="px-6 py-4 text-left font-semibold">Integration</th>
-              <th className="px-6 py-4 text-left font-semibold">Role</th>
-              <th className="px-6 py-4 text-center font-semibold">Actions</th>
-            </tr>
-          </thead>
+      <div className="hidden lg:flex lg:flex-col w-full max-w-7xl gap-6">
+        {workCards.map((work, idx) => {
+          const getFact = (head: string) =>
+            work.facts.find((f) => f.head === head)?.content || "-";
 
-          <tbody className="divide-y divide-gray-100">
-            {workCards.map((work, idx) => {
-              const getFact = (head: string) =>
-                work.facts.find((f) => f.head === head)?.content || "-";
-              return (
-                <tr
-                  key={idx}
-                  className="hover:bg-gray-50 transition-colors duration-200"
+          return (
+            <div
+              key={idx}
+              className="bg-white flex items-center gap-6 rounded-3xl shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow duration-300 p-4"
+            >
+              {/* LEFT: IMAGE */}
+              <img
+                src={work.src}
+                alt={work.heading}
+                className="w-48 h-32 object-center rounded-xl flex-shrink-0 border-gray-color"
+              />
+
+              {/* MIDDLE: TEXT SECTION */}
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {work.heading}
+                </h3>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-gray-700">
+                  <p><span className="font-semibold">Stack:</span> {getFact("Stack")}</p>
+                  <p><span className="font-semibold">Feature:</span> {getFact("Feature")}</p>
+                  <p><span className="font-semibold">Company:</span> {getFact("Company")}</p>
+                  <p><span className="font-semibold">Integration:</span> {getFact("Integration")}</p>
+                  <p className="col-span-2">
+                    <span className="font-semibold">Role:</span> {getFact("Role")}
+                  </p>
+                </div>
+              </div>
+
+              {/* RIGHT: BUTTONS */}
+              <div className="flex flex-col justify-center gap-3">
+                <button className="bg-white border border-gray-300 text-gray-800 px-5 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
+                  onClick={() => setOpenCaseStudy(work.heading)}
                 >
-                  <td className="px-6 py-4">
-                    <img
-                      src={work.src}
-                      alt={work.heading}
-                      className="w-36 h-20 object-cover rounded-xl shadow-md"
-                    />
-                  </td>
-                  <td className="px-6 py-4 font-semibold text-gray-900">
-                    {work.heading}
-                  </td>
-                  <td className="px-6 py-4 text-gray-700">{getFact("Stack")}</td>
-                  <td className="px-6 py-4 text-gray-700">{getFact("Feature")}</td>
-                  <td className="px-6 py-4 text-gray-700">{getFact("Company")}</td>
-                  <td className="px-6 py-4 text-gray-700">{getFact("Integration")}</td>
-                  <td className="px-6 py-4 text-gray-700">{getFact("Role")}</td>
-                  <td className="px-6 py-4 flex justify-center gap-3">
-                    <button className="bg-white border border-gray-300 text-gray-800 px-4 py-1.5 rounded-full font-semibold hover:bg-gray-100 transition">
-                      {work.btnCaseStudy.name}
-                    </button>
-                    <button className="bg-blue-600 text-white px-4 py-1.5 rounded-full font-semibold hover:bg-blue-700 transition">
-                      {work.btnView.name}
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                  {work.btnCaseStudy.name}
+                </button>
+                <button className="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
+                  {work.btnView.name}
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
+
 
       {/* Mobile Cards */}
       <div className="block lg:hidden w-full max-w-md space-y-6">
@@ -100,7 +123,7 @@ export default function WorkComponent() {
               <img
                 src={work.src}
                 alt={work.heading}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-center"
               />
               <div className="p-5">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -126,8 +149,10 @@ export default function WorkComponent() {
                   </p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button className="w-full sm:w-auto bg-white border border-gray-300 text-gray-800 px-5 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+                <div className="flex flex-col sm:flex-row justify-center gap-3">
+                  <button className="w-full sm:w-auto bg-white border border-gray-300 text-gray-800 px-5 py-2 rounded-full font-semibold hover:bg-gray-100 transition"
+                    onClick={() => setOpenCaseStudy(work.heading)}
+                  >
                     {work.btnCaseStudy.name}
                   </button>
                   <button className="w-full sm:w-auto bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
@@ -138,6 +163,20 @@ export default function WorkComponent() {
             </div>
           );
         })}
+      </div>
+      
+      <div>
+        {openCaseStudy === "KBS Portal" && (
+          <KbsPortalModal onClose={() => setOpenCaseStudy(null)} />
+        )}
+
+        {openCaseStudy === "React Native App" && (
+          <ReactNativeModal onClose={() => setOpenCaseStudy(null)} />
+        )}
+
+        {openCaseStudy === "Data Visualization" && (
+          <DataVizModal onClose={() => setOpenCaseStudy(null)} />
+        )}
       </div>
     </section>
   );
