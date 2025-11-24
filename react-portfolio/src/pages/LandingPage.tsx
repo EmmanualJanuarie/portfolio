@@ -1,40 +1,42 @@
-import { useState } from "react";
-import ContextComponent from "../components/ContextComponent"
-import NavbarComponent from "../components/NAVIGATION/NavabarComponent";
-import UnderConstruction from "../components/UnderContruction";
-/**
- * Fabricates the landing page and it's features 
- * @function LandingPage
- * @exports LandingPage
- */
+import About from "../components/About";
+import Certificates from "../components/Certificates";
+import Experience from "../components/Exeperience";
+import Header from "../components/Header";
+import MatrixBackground from "../components/MatrixBackground";
+import Skills from "../components/Skills";
+import UnderConstruction from "../components/UnderConstruction";
 
-export default function LandingPage(){
-    const [selectedSection, setSelectedSection] = useState<string>("home");
+const LandingPage = () => {
+   const portfolio = () =>{
+      return(
+        <div className="relative min-h-screen bg-black text-gray-200 font-mono p-4 sm:p-6 overflow-hidden">
 
-    return(
-       <>
-            <div className="hidden">  {/* Remove when construction is done */}
-                <div className="relative min-h-screen flex flex-col justify-between">
-                    {/* CONTENT SECTION */}
-                    <div className="flex-grow flex items-center justify-center py-4">
-                        <ContextComponent selected={selectedSection} />
-                    </div>
+        {/* Animated Background */}
+        <MatrixBackground />
 
-                    {/* NAVIGATION BAR */}
-                    <div className="fixed bottom-30 left-0 w-full z-50">
-                        <div>
-                            <NavbarComponent onSelect={setSelectedSection} />
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {/* Main Content */}
+        <div className="relative z-10 max-w-5xl mx-auto grid gap-6 mt-10">
+            <Header />
+            <About />
+            <Skills />
+            <Experience />
+            <Certificates />
+        </div>
 
-            {/* UNDER CONSTRUCTION */}
-            <div className="">
-                <UnderConstruction />
-            </div>
+    </div>
+      );
+   }
+  return (
+    <>
+      <div className="hidden">
+          {portfolio()}
+      </div>
 
-       </>
-       
-    )
-}
+      <div className="">
+        <UnderConstruction/>
+      </div>
+    </>
+  );
+};
+
+export default LandingPage;
